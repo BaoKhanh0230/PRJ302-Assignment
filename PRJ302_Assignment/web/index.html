@@ -10,6 +10,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <form action="login" method="POST">
+            <div id="container" class="box">
+                Username: <input type="text" name="username1"/> <br/>
+                Password: <input type="password" name="password1"/> <br/>
+                Role: <input type="radio" name="role1" value="Worker"/> Worker
+                <input type="radio" name="role1" value="Manager"/> Manager
+                <input type="radio" name="role1" value="DepManager"/> DepManager
+            </div>
+            <input type="submit" value="Login"/>
+        </form>
     </body>
 </html>
