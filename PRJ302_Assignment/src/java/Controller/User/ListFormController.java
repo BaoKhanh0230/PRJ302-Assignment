@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class ListUserController extends BaseRequiredAuthenticationController {
+public class ListFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
         

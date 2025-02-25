@@ -10,19 +10,19 @@
     </servlet>
     <servlet>
         <servlet-name>CreateUserController</servlet-name>
-        <servlet-class>Controller.User.CreateUserController</servlet-class>
+        <servlet-class>Controller.User.CreateFormController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListUserController</servlet-name>
-        <servlet-class>Controller.User.ListUserController</servlet-class>
+        <servlet-class>Controller.User.ListFormController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateUserController</servlet-name>
-        <servlet-class>Controller.User.UpdateUserController</servlet-class>
+        <servlet-class>Controller.User.UpdateFormController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteUserController</servlet-name>
-        <servlet-class>Controller.User.DeleteUserController</servlet-class>
+        <servlet-class>Controller.User.DeleteFormController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
