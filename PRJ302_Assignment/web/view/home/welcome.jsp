@@ -13,5 +13,11 @@
     </head>
     <body>
         <h1>Hello ${sessionScope.user.displayname}</h1>
+        <div>
+            <a href="user/list">View List</a>
+            <a href="user/create">Create</a>
+            <a href="user/update">Update</a>
+            <a href="user/Delete">Delete</a>
+        </div>
     </body>
 </html>

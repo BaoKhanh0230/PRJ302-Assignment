@@ -14,11 +14,11 @@ public class UserDBContext extends DBContext<User> {
         try {
             String sql = "SELECT u.username, u.displayname\n"
                     + ", r.rid, r.rname\n"
-                    + ", r.fid, f.url\n"
-                    + "From [User] u LEFT JOIN UserRole ur ON ur.username = u.username\n"
+                    + ", f.fid, f.url\n"
+                    + "From [Users] u LEFT JOIN UserRole ur ON ur.username = u.username\n"
                     + " LEFT JOIN Roles r ON r.rid = ur.rid\n"
                     + " LEFT JOIN RoleFeature rf ON r.rid = rf.rid\n"
-                    + " LEFT JOIN Feature f ON f.fid = rf.fid\n"
+                    + " LEFT JOIN Features f ON f.fid = rf.fid\n"
                     + "WHERE u.username = ? AND u.password = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
