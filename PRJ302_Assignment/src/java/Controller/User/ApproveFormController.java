@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteFormController extends BaseRequiredAuthenticationController {
+public class ApproveFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
         
