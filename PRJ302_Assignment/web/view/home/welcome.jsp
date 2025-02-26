@@ -17,7 +17,8 @@
             <a href="user/list">View List</a>
             <a href="user/create">Create</a>
             <a href="user/update">Update</a>
-            <a href="user/Delete">Delete</a>
+            <a href="user/approve">Approve</a>
+            <a href="user/view">Agenda Table</a>
         </div>
     </body>
 </html>

@@ -44,5 +44,8 @@
                 <p>No forms found.</p>
             </c:otherwise>
         </c:choose>
+        <a href="../home">
+            <input type="button" value="Back to Home" />
+        </a>
     </body>
 </html>
