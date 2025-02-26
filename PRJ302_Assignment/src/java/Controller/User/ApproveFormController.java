@@ -25,6 +25,6 @@ public class ApproveFormController extends BaseRequiredAuthenticationController 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        
+        req.getRequestDispatcher("/view/home/approve.jsp").forward(req, resp);
     }
 }
