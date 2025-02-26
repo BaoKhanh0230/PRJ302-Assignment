@@ -1,6 +1,7 @@
 package Controller.User;
 
 import Controller.Authentication.BaseRequiredAuthenticationController;
+import DAL.FormDAO;
 import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,10 +24,12 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
         String toDate = req.getParameter("toDate");
         String reason = req.getParameter("reason");
         
+        FormDAO fd = new FormDAO();
+        fd.insert(username, role, department, fromDate, toDate, reason);
+        resp.sendRedirect(req.getContextPath() + "/user/list");
         
-        
-        resp.getWriter().println(username + "\n" + role + "\n" + department + "\n" + fromDate + "\n"
-        + toDate + "\n" + reason);
+        /*resp.getWriter().println(username + "\n" + role + "\n" + department + "\n" + fromDate + "\n"
+        + toDate + "\n" + reason);*/
     }
 
     @Override

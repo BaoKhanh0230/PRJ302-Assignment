@@ -6,9 +6,27 @@ import java.util.Date;
 public class LeaveForm {
     private String user;
     private String role;
+    private String department;
     private Date fromDay;
     private Date toDay;
     private String reason;
+
+    public LeaveForm(String user, String role, String department, Date fromDay, Date toDay, String reason) {
+        this.user = user;
+        this.role = role;
+        this.department = department;
+        this.fromDay = fromDay;
+        this.toDay = toDay;
+        this.reason = reason;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     public String getUser() {
         return user;
