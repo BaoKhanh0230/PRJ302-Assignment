@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello ${sessionScope.user.employee.name}</h1>
+        <h1>Hello ${sessionScope.user.displayname}</h1>
         
         <c:if test="${sessionScope.user.employee.manager ne null}">
             Report to ${sessionScope.user.employee.manager.name} <br/>

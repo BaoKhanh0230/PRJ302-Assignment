@@ -23,9 +23,11 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
         String fromDate = req.getParameter("fromDate");
         String toDate = req.getParameter("toDate");
         String reason = req.getParameter("reason");
+        String status = "In progress";
+        String processedBy = "";
         
         FormDAO fd = new FormDAO();
-        fd.insert(username, role, department, fromDate, toDate, reason);
+        fd.insert(username, role, department, fromDate, toDate, reason, status, processedBy);
         resp.sendRedirect(req.getContextPath() + "/user/list");
         
         /*resp.getWriter().println(username + "\n" + role + "\n" + department + "\n" + fromDate + "\n"

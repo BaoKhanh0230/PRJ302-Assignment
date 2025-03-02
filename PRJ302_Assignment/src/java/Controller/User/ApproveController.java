@@ -6,8 +6,6 @@ package Controller.User;
 
 import Controller.Authentication.BaseRequiredAuthenticationController;
 import DAL.FormDAO;
-import Model.Employee;
-import Model.LeaveForm;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,26 +13,30 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class ApproveFormController extends BaseRequiredAuthenticationController {
-
+public class ApproveController extends BaseRequiredAuthenticationController {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
+        
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        ArrayList<Employee> emps = user.getEmployee().getStaffs();
-
+        String username = req.getParameter("username");
+        String role = req.getParameter("role");
+        String department = req.getParameter("department");
+        String fromDate = req.getParameter("fromDay");
+        String toDate = req.getParameter("toDay");
+        String status = "Approved";
+        
         FormDAO fd = new FormDAO();
-        ArrayList<LeaveForm> al = fd.selectApprove(emps, user);
-        req.setAttribute("listForm", al);
-
-        req.getRequestDispatcher("/view/home/list2.jsp").forward(req, resp);
+        fd.updateFormStatus(username, role, department, fromDate, toDate, status);
+        
+        resp.sendRedirect(req.getContextPath() + "/home");
     }
+
 }

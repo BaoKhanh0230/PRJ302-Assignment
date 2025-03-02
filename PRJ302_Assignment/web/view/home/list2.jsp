@@ -1,6 +1,6 @@
 <%-- 
-    Document   : list
-    Created on : Feb 26, 2025, 8:01:38 AM
+    Document   : list2
+    Created on : Mar 2, 2025, 3:23:44 PM
     Author     : Admin
 --%>
 
@@ -20,19 +20,25 @@
                 <h2>There are ${listForm.size()} forms</h2>
                 <table border="1">
                     <tr>
-                        <th>Created By</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Status</th>
-                        <th>Processed By</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <th>Reason</th>
                     </tr>
                     <c:forEach var="form" items="${listForm}">
                         <tr>
                             <td>${form.user}</td>
+                            <td>${form.role}</td>
+                            <td>${form.department}</td>
                             <td><fmt:formatDate value="${form.fromDay}" pattern="yyyy-MM-dd"/></td>
                             <td><fmt:formatDate value="${form.toDay}" pattern="yyyy-MM-dd"/></td>
-                            <td>${form.status}</td>
-                            <td>${form.processedBy}</td>
+                            <td>${form.reason}</td>
+                            <td class="button-group">
+                                <a href="approve2?username=${form.user}&role=${form.role}&department=${form.department}&fromDay=${form.fromDay}&toDay=${form.toDay}">Approve</a>|<br>
+                                <a href="reject2?username=${form.user}&role=${form.role}&department=${form.department}&fromDay=${form.fromDay}&toDay=${form.toDay}">Reject</a>|<br>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>

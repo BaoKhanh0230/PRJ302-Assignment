@@ -10,14 +10,34 @@ public class LeaveForm {
     private Date fromDay;
     private Date toDay;
     private String reason;
+    private String status;
+    private String processedBy;
 
-    public LeaveForm(String user, String role, String department, Date fromDay, Date toDay, String reason) {
+    public LeaveForm(String user, String role, String department, Date fromDay, Date toDay, String reason, String status, String processedBy) {
         this.user = user;
         this.role = role;
         this.department = department;
         this.fromDay = fromDay;
         this.toDay = toDay;
         this.reason = reason;
+        this.status = status;
+        this.processedBy = processedBy;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getProcessedBy() {
+        return processedBy;
+    }
+
+    public void setProcessedBy(String processedBy) {
+        this.processedBy = processedBy;
     }
 
     public String getDepartment() {

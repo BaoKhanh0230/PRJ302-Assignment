@@ -23,10 +23,10 @@ import java.util.ArrayList;
 public class RelistFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        FormDAO fd = new FormDAO();
+        /*FormDAO fd = new FormDAO();
         ArrayList<LeaveForm> al = fd.select();
         req.setAttribute("listForm", al);
-        req.getRequestDispatcher("/view/home/list.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/home/list.jsp").forward(req, resp);*/
     }
 
     @Override

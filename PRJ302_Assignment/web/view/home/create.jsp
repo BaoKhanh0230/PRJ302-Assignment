@@ -65,7 +65,7 @@
                     <label>Đơn xin nghỉ phép</label>
                 </div>
                 <div class="form_group">
-                    <label>Username: ${sessionScope.user.username}</label>
+                    <label>Username: ${sessionScope.user.employee.name}</label>
                 </div>
                 <div class="form_group">
                     <label>Role</label>
