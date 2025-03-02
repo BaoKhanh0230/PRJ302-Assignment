@@ -1,5 +1,6 @@
 package DAL;
 
+import Model.Employee;
 import Model.Feature;
 import Model.Role;
 import Model.User;
@@ -12,14 +13,20 @@ import java.util.logging.Logger;
 public class UserDBContext extends DBContext<User> {
     public User get(String username, String password){
         try {
-            String sql = "SELECT u.username, u.displayname\n"
-                    + ", r.rid, r.rname\n"
-                    + ", f.fid, f.url\n"
-                    + "From [Users] u LEFT JOIN UserRole ur ON ur.username = u.username\n"
-                    + " LEFT JOIN Roles r ON r.rid = ur.rid\n"
-                    + " LEFT JOIN RoleFeature rf ON r.rid = rf.rid\n"
-                    + " LEFT JOIN Features f ON f.fid = rf.fid\n"
-                    + "WHERE u.username = ? AND u.password = ?";
+            String sql = "SELECT u.username,u.displayname\n"
+                    + "                    ,r.rid, r.rname\n"
+                    + "                    ,f.fid,f.url\n"
+                    + "					,e.eid, e.ename\n"
+                    + "					,m.eid as [managerid]\n"
+                    + "					,m.ename as [managerename]\n"
+                    + "                    FROM Users u \n"
+                    + "					INNER JOIN Employees e ON e.eid = u.eid\n"
+                    + "					LEFT JOIN Employees m ON e.managerid = m.eid\n"
+                    + "					LEFT JOIN UserRole ur ON ur.username = u.username\n"
+                    + "                    LEFT JOIN Roles r ON r.rid = ur.rid\n"
+                    + "                    LEFT JOIN RoleFeature rf ON r.rid = rf.rid\n"
+                    + "                    LEFT JOIN Features f ON f.fid = rf.fid\n"
+                    + "                    WHERE u.username = ? AND u.password = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
@@ -32,6 +39,18 @@ public class UserDBContext extends DBContext<User> {
                     user = new User();
                     user.setUsername(username);
                     user.setDisplayname(rs.getNString("displayname"));
+                    
+                    Employee e = new Employee();
+                    e.setId(rs.getInt("eid"));
+                    e.setName(rs.getString("ename"));
+                    user.setEmployee(e);
+                    int managerid = rs.getInt("managerid");
+                    if(managerid != 0){
+                        Employee m = new Employee();
+                        m.setId(managerid);
+                        m.setName(rs.getString("managerename"));
+                        e.setManager(m);
+                    }
                 }
                 
                 int rid = rs.getInt("rid");

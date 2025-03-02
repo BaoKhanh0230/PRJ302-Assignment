@@ -17,7 +17,7 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         
-        String username = user.getUsername();
+        String username = user.getEmployee().getName();
         String role = req.getParameter("role");
         String department = req.getParameter("department");
         String fromDate = req.getParameter("fromDate");

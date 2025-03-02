@@ -7,6 +7,15 @@ public class User {
     private String username;
     private String password;
     private String displayname;
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
     
     private ArrayList<Role> roles = new ArrayList<>();
 

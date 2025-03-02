@@ -6,6 +6,7 @@ package Controller.User;
 
 import Controller.Authentication.BaseRequiredAuthenticationController;
 import DAL.FormDAO;
+import Model.Employee;
 import Model.LeaveForm;
 import Model.User;
 import java.io.IOException;
@@ -27,8 +28,10 @@ public class ListFormController extends BaseRequiredAuthenticationController {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         
+        ArrayList<Employee> emps = user.getEmployee().getStaffs();
+        
         FormDAO fd = new FormDAO();
-        ArrayList<LeaveForm> al = fd.select();
+        ArrayList<LeaveForm> al = fd.select(emps, user);
         req.setAttribute("listForm", al);
         
         /*resp.getWriter().println("Forms retrieved from database: " + al.size());

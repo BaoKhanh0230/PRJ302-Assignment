@@ -4,7 +4,9 @@
  */
 package Controller.Authentication;
 
+import DAL.EmployeeDBContext;
 import DAL.UserDBContext;
+import Model.Employee;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,13 +22,17 @@ import jakarta.servlet.http.HttpSession;
  */
 public class LoginController extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         UserDBContext db = new UserDBContext();
         User user = db.get(username, password);
         if(user != null){
+            EmployeeDBContext edb = new EmployeeDBContext();
+            Employee profile = edb.get(user.getEmployee().getId());
+            profile.setManager(user.getEmployee().getManager());
+            user.setEmployee(profile);
+            
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             
