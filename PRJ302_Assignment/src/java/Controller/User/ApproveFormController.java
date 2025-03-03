@@ -10,7 +10,6 @@ import Model.Employee;
 import Model.LeaveForm;
 import Model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +24,7 @@ public class ApproveFormController extends BaseRequiredAuthenticationController 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
+        
     }
 
     @Override

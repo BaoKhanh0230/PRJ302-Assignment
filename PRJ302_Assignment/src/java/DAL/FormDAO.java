@@ -18,12 +18,6 @@ public class FormDAO extends DBContext<LeaveForm> {
         DBContext db = new DBContext();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        /*java.sql.Date fromDate = null;
-        fromDate = new java.sql.Date(fromDay.getTime());
-        
-        java.sql.Date toDate = null;
-        toDate = new java.sql.Date(toDay.getTime());*/
         try {
             java.util.Date parsedFromDate = sdf.parse(fromDay);
             java.util.Date parsedToDate = sdf.parse(toDay);
@@ -73,9 +67,6 @@ public class FormDAO extends DBContext<LeaveForm> {
                 String processedBy = rs.getString(8);
                 LeaveForm lf = new LeaveForm(username, role, department, fromDate, toDate, reason, status, processedBy);
                 al.add(lf);
-                //rs.close();
-                //stm.close();
-                //con.close();
             }
             for (Employee emp : emps) {
                 sql = "SELECT username, role, department, fromDay, toDay, reason, status, processedBy FROM [Form2] WHERE username = ?";

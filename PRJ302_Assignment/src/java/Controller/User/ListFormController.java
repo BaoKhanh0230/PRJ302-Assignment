@@ -10,7 +10,6 @@ import Model.Employee;
 import Model.LeaveForm;
 import Model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,15 +33,11 @@ public class ListFormController extends BaseRequiredAuthenticationController {
         ArrayList<LeaveForm> al = fd.select(emps, user);
         req.setAttribute("listForm", al);
         
-        /*resp.getWriter().println("Forms retrieved from database: " + al.size());
-        for (LeaveForm f : al) {
-            resp.getWriter().println(f.getUser() + " - " + f.getFromDay() + " - " + f.getReason());
-        }
-        resp.getWriter().println("Forwarding listForm with size: " + al.size());*/
         req.getRequestDispatcher("/view/home/list.jsp").forward(req, resp);
     }
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
+        
     }
 }
