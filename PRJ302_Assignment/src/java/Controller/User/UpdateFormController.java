@@ -20,11 +20,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class UpdateFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        
+
     }
 }
