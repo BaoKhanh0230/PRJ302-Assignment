@@ -2,6 +2,7 @@ package Controller.User;
 
 import Controller.Authentication.BaseRequiredAuthenticationController;
 import DAL.FormDAO;
+import Model.LeaveForm;
 import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,11 +18,22 @@ import java.util.logging.Logger;
 public class CreateFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
+        /*req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=UTF-8");
-
-        String username = user.getEmployee().getName();
+        resp.setContentType("text/html;charset=UTF-8");*/
+        
+        LeaveForm lf = new LeaveForm();
+        lf.setFrom(Date.valueOf(req.getParameter("from")));
+        lf.setTo(Date.valueOf(req.getParameter("to")));
+        lf.setReason(req.getParameter("reason"));
+        lf.setStatus("In progress");
+        lf.setCreatedBy(user.getEmployee().getName());
+        lf.setProcessedBy("");
+        
+        FormDAO fd = new FormDAO();
+        fd.insert(lf);
+        
+        /*String username = user.getEmployee().getName();
         String role = req.getParameter("role");
         String department = req.getParameter("department");
         String fromDate = req.getParameter("fromDate");
@@ -44,7 +57,8 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
             }
         } catch (ParseException ex) {
             Logger.getLogger(CreateFormController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        resp.sendRedirect(req.getContextPath() + "/user/list");
     }
 
     @Override

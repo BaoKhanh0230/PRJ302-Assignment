@@ -68,34 +68,18 @@
                     <label>Username: ${sessionScope.user.employee.name}</label>
                 </div>
                 <div class="form_group">
-                    <label>Role</label>
-                    <select name="role">
-                                <option value="Staff">Staff</option>
-                                <option value="TeamLeader">Team Leader</option>
-                                <option value="DivisionLeader">Division Leader</option>
-                    </select>
+                    <label>From:</label>
+                    <input type="date" name="from"/>
                 </div>
                 <div class="form_group">
-                    <label>Department</label>
-                    <select name="department">
-                                <option value="IT">IT</option>
-                                <option value="QA">QA</option>
-                                <option value="Sale">Sale</option>
-                    </select>
-                </div>
-                <div class="form_group">
-                    <label>From day</label>
-                    <input type="date" name="fromDate"/>
-                </div>
-                <div class="form_group">
-                    <label>To day</label>
-                    <input type="date" name="toDate"/>
+                    <label>To:</label>
+                    <input type="date" name="to"/>
                 </div>
                 <div class="form_group">
                     <label>Reason</label>
                     <textarea name="reason" placeholder="Enter reason here..."></textarea>
                 </div>
-                <input type="submit" value="Send" />
+                <input type="submit" value="Create" />
             </form>
         </div>
     </body>

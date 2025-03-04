@@ -2,6 +2,7 @@ package DAL;
 
 import Model.Department;
 import Model.Employee;
+import Model.User;
 import java.util.ArrayList;
 import java.sql.*;
 import java.util.logging.Level;
@@ -78,5 +79,30 @@ public class EmployeeDBContext extends DBContext<Employee> {
                 return emp;
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Employee> list() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void insert(Employee model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update(Employee model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void approve(Employee model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Employee get(ArrayList<Employee> emps, User user) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

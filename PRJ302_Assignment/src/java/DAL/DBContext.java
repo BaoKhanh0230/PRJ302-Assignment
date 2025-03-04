@@ -1,11 +1,13 @@
 package DAL;
 
+import Model.Employee;
+import Model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DBContext<T> {
+public abstract class DBContext<T> {
     protected Connection connection;
 
     public DBContext() {
@@ -37,9 +39,9 @@ public class DBContext<T> {
         return null;
     }
 
-    /*public abstract ArrayList<T> list();
-    public abstract T get(int id);
+    public abstract ArrayList<T> list();
+    public abstract T get(ArrayList<Employee> emps, User user);
     public abstract void insert(T model);
     public abstract void update(T model);
-    public abstract void approve(T model);*/
+    public abstract void approve(T model);
 }

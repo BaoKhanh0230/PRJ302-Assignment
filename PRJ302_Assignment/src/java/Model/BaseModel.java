@@ -5,7 +5,7 @@ import java.util.Date;
 
 public abstract class BaseModel {
     private int id;
-    private User createdBy;
+    private String createdBy;
     private Date createdDate;
 
     public int getId() {
@@ -16,11 +16,11 @@ public abstract class BaseModel {
         this.id = id;
     }
 
-    public User getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 

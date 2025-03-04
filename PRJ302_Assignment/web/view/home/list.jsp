@@ -20,17 +20,23 @@
                 <h2>There are ${listForm.size()} forms</h2>
                 <table border="1">
                     <tr>
+                        <th>ID</th>
                         <th>Created By</th>
+                        <th>Created Date</th>
                         <th>From</th>
                         <th>To</th>
+                        <th>Reason</th>
                         <th>Status</th>
                         <th>Processed By</th>
                     </tr>
                     <c:forEach var="form" items="${listForm}">
                         <tr>
-                            <td>${form.user}</td>
-                            <td><fmt:formatDate value="${form.fromDay}" pattern="yyyy-MM-dd"/></td>
-                            <td><fmt:formatDate value="${form.toDay}" pattern="yyyy-MM-dd"/></td>
+                            <td>${form.id}</td>
+                            <td>${form.createdBy}</td>
+                            <td>${form.createdDate}</td>
+                            <td><fmt:formatDate value="${form.from}" pattern="yyyy-MM-dd"/></td>
+                            <td><fmt:formatDate value="${form.to}" pattern="yyyy-MM-dd"/></td>
+                            <td>${form.reason}</td>
                             <td>${form.status}</td>
                             <td>${form.processedBy}</td>
                         </tr>

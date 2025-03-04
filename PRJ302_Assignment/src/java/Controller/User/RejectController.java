@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 
 /**
  *
@@ -25,17 +26,16 @@ public class RejectController extends BaseRequiredAuthenticationController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String role = req.getParameter("role");
-        String department = req.getParameter("department");
-        String fromDate = req.getParameter("fromDay");
-        String toDate = req.getParameter("toDay");
+        Date from = Date.valueOf(req.getParameter("from"));
+        Date to = Date.valueOf(req.getParameter("to"));
+        String reason = req.getParameter("reason");
+        String createdBy = req.getParameter("createdBy");
         String status = "Rejected";
+        String processedBy = user.getEmployee().getName();
         
         FormDAO fd = new FormDAO();
-        fd.updateFormStatus(username, role, department, fromDate, toDate, status);
+        fd.updateFormStatus(from, to, reason, createdBy, status, processedBy);
         
         resp.sendRedirect(req.getContextPath() + "/home");
     }
-
 }

@@ -20,24 +20,26 @@
                 <h2>There are ${listForm.size()} forms</h2>
                 <table border="1">
                     <tr>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        <th>From Date</th>
-                        <th>To Date</th>
+                        <th>ID</th>
+                        <th>Created By</th>
+                        <th>Created Date</th>
+                        <th>From</th>
+                        <th>To</th>
                         <th>Reason</th>
+                        <th>Status</th>
+                        <th>Processed By</th>
                     </tr>
                     <c:forEach var="form" items="${listForm}">
                         <tr>
-                            <td>${form.user}</td>
-                            <td>${form.role}</td>
-                            <td>${form.department}</td>
-                            <td><fmt:formatDate value="${form.fromDay}" pattern="yyyy-MM-dd"/></td>
-                            <td><fmt:formatDate value="${form.toDay}" pattern="yyyy-MM-dd"/></td>
+                            <td>${form.id}</td>
+                            <td>${form.createdBy}</td>
+                            <td>${form.createdDate}</td>
+                            <td><fmt:formatDate value="${form.from}" pattern="yyyy-MM-dd"/></td>
+                            <td><fmt:formatDate value="${form.to}" pattern="yyyy-MM-dd"/></td>
                             <td>${form.reason}</td>
                             <td class="button-group">
-                                <a href="approve2?username=${form.user}&role=${form.role}&department=${form.department}&fromDay=${form.fromDay}&toDay=${form.toDay}">Approve</a>|<br>
-                                <a href="reject2?username=${form.user}&role=${form.role}&department=${form.department}&fromDay=${form.fromDay}&toDay=${form.toDay}">Reject</a>|<br>
+                                <a href="approve2?from=${form.from}&to=${form.to}&reason=${form.reason}&createdBy=${form.createdBy}">Approve</a>|<br>
+                                <a href="reject2?from=${form.from}&to=${form.to}&reason=${form.reason}&createdBy=${form.createdBy}">Reject</a>|<br>
                             </td>
                         </tr>
                     </c:forEach>
