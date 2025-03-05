@@ -29,9 +29,12 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
         lf.setStatus("In progress");
         lf.setCreatedBy(user.getEmployee().getName());
         lf.setProcessedBy("");
-        
-        FormDAO fd = new FormDAO();
-        fd.insert(lf);
+        if(Date.valueOf(req.getParameter("from")).before(Date.valueOf(req.getParameter("to"))) || Date.valueOf(req.getParameter("from")).before(Date.valueOf(req.getParameter("to")))){
+            FormDAO fd = new FormDAO();
+            fd.insert(lf);
+        }
+        else if(Date.valueOf(req.getParameter("from")).after(Date.valueOf(req.getParameter("to"))))
+            req.getRequestDispatcher("/view/home/create.jsp").forward(req, resp);
         
         /*String username = user.getEmployee().getName();
         String role = req.getParameter("role");
