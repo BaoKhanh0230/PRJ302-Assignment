@@ -67,5 +67,5 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
         req.getRequestDispatcher("/view/home/create.jsp").forward(req, resp);
+        }
     }
-}

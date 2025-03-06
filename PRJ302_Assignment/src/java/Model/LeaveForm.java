@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 
 public class LeaveForm extends BaseModel {
@@ -48,5 +49,10 @@ public class LeaveForm extends BaseModel {
 
     public void setProcessedBy(String processedBy) {
         this.processedBy = processedBy;
+    }
+    
+    public static LocalDate convertSqlDateToLocalDate(java.sql.Date sqlDate) {
+        if (sqlDate == null) return null;
+        return sqlDate.toLocalDate();
     }
 }

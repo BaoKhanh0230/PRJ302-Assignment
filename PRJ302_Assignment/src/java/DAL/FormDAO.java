@@ -7,10 +7,41 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FormDAO extends DBContext<LeaveForm> {
+
+    public ArrayList<LeaveForm> getApprovedLeaves(LocalDate startDate, LocalDate endDate) {
+        ArrayList<LeaveForm> al = new ArrayList<>();
+        String sql = "SELECT * FROM [LeaveForm] WHERE status = ? "
+                + "AND ([from] BETWEEN ? AND ? OR [to] BETWEEN ? AND ?)";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, "Approved");
+            pstmt.setDate(2, Date.valueOf(startDate)); // Convert LocalDate to java.sql.Date
+            pstmt.setDate(3, Date.valueOf(endDate));
+            pstmt.setDate(4, Date.valueOf(startDate));
+            pstmt.setDate(5, Date.valueOf(endDate));
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                LeaveForm leave = new LeaveForm();
+                leave.setId(rs.getInt("id"));
+                leave.setCreatedBy(rs.getString("createdBy"));
+                // Convert java.sql.Date to LocalDate
+                leave.setFrom(rs.getDate("from"));
+                leave.setTo(rs.getDate("to"));
+                leave.setStatus(rs.getString("status"));
+                al.add(leave);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return al;
+    }
 
     /*public void insert(String username, String role, String department, String fromDay, String toDay, String reason, String status, String processedBy) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
