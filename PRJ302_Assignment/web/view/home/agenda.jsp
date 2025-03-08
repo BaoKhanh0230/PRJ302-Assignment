@@ -26,10 +26,53 @@
         .red {
             background-color: #FF0000;
         }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            margin-right: 10px;
+        }
+        .form-container input[type="date"] {
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Employee Leave Agenda (Mar 1, 2025 - Mar 9, 2025)</h1>
+    <h1>Employee Leave Agenda</h1>
+    
+    <!-- Form to select start and end dates using date pickers -->
+    <div class="form-container">
+        <form action="view" method="get">
+            <label for="start">Start Date:</label>
+            <input type="date" id="start" name="start" value="<%
+                java.time.LocalDate start = (java.time.LocalDate) request.getAttribute("startDate");
+                if (start != null) out.print(start);
+            %>">
+            
+            <label for="end">End Date:</label>
+            <input type="date" id="end" name="end" value="<%
+                java.time.LocalDate end = (java.time.LocalDate) request.getAttribute("endDate");
+                if (end != null) out.print(end);
+            %>">
+            
+            <input type="submit" value="Update Agenda">
+        </form>
+    </div>
+
+    <!-- Display error message if any -->
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+        <p class="error"><%= error %></p>
+    <%
+        }
+    %>
+
     <table>
         <tr>
             <th>Employee</th>

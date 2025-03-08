@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,8 +38,33 @@ public class ViewAgendaController extends BaseRequiredAuthenticationController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        LocalDate startDate = LocalDate.of(2025, 3, 1); // Adjust as needed
-        LocalDate endDate = LocalDate.of(2025, 3, 9);   // Adjust as needed
+        /*LocalDate startDate = LocalDate.of(2025, 3, 1); // Adjust as needed
+        LocalDate endDate = LocalDate.of(2025, 3, 9);   // Adjust as needed*/
+        
+        String startStr = req.getParameter("start");
+        String endStr = req.getParameter("end");
+
+        LocalDate startDate, endDate;
+        try {
+            // Default to Jan 1, 2025, if no start date is provided
+            startDate = (startStr != null && !startStr.isEmpty()) 
+                ? LocalDate.parse(startStr) 
+                : LocalDate.of(2025, 1, 1);
+            
+            // Default to Sep 1, 2025, if no end date is provided
+            endDate = (endStr != null && !endStr.isEmpty()) 
+                ? LocalDate.parse(endStr) 
+                : LocalDate.of(2025, 9, 1);
+
+            // Ensure end date is not before start date
+            if (endDate.isBefore(startDate)) {
+                throw new IllegalArgumentException("End date cannot be before start date.");
+            }
+        } catch (DateTimeParseException | IllegalArgumentException e) {
+            req.setAttribute("error", "Invalid date format or range. Use YYYY-MM-DD (e.g., 2025-01-01).");
+            startDate = LocalDate.of(2025, 1, 1); // Default start date
+            endDate = LocalDate.of(2025, 9, 1);   // Default end date
+        }
 
         // Fetch leave requests
         FormDAO fd = new FormDAO();
@@ -82,13 +108,24 @@ public class ViewAgendaController extends BaseRequiredAuthenticationController {
             String employeeName = request.getCreatedBy();
             LocalDate from = LeaveForm.convertSqlDateToLocalDate(request.getFrom());
             LocalDate to = LeaveForm.convertSqlDateToLocalDate(request.getTo());
+            
+            if (to.isBefore(startDate) || from.isAfter(endDate)) {
+                continue;
+            }
 
             int startIndex = (int) java.time.temporal.ChronoUnit.DAYS.between(startDate, from);
             int endIndex = (int) java.time.temporal.ChronoUnit.DAYS.between(startDate, to);
 
             boolean[] schedule = agenda.get(employeeName);
-            for (int i = startIndex; i <= endIndex && i < totalDays; i++) {
+            startIndex = Math.max(0, startIndex);
+            endIndex = Math.min(endIndex, (int) totalDays - 1);
+            /*for (int i = startIndex; i <= endIndex && i < totalDays; i++) {
                 if (schedule != null) {
+                    schedule[i] = true; // Mark as on leave
+                }
+            }*/
+            if (schedule != null) {
+                for (int i = startIndex; i <= endIndex && i < totalDays; i++) {
                     schedule[i] = true; // Mark as on leave
                 }
             }

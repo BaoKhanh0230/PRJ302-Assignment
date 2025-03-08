@@ -26,8 +26,7 @@
                         <th>From</th>
                         <th>To</th>
                         <th>Reason</th>
-                        <th>Status</th>
-                        <th>Processed By</th>
+                        <th>Approve</th>
                     </tr>
                     <c:forEach var="form" items="${listForm}">
                         <tr>

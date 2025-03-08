@@ -29,7 +29,7 @@ public class CreateFormController extends BaseRequiredAuthenticationController {
         lf.setStatus("In progress");
         lf.setCreatedBy(user.getEmployee().getName());
         lf.setProcessedBy("");
-        if(Date.valueOf(req.getParameter("from")).before(Date.valueOf(req.getParameter("to"))) || Date.valueOf(req.getParameter("from")).before(Date.valueOf(req.getParameter("to")))){
+        if(Date.valueOf(req.getParameter("from")).before(Date.valueOf(req.getParameter("to"))) || Date.valueOf(req.getParameter("from")).equals(Date.valueOf(req.getParameter("to")))){
             FormDAO fd = new FormDAO();
             fd.insert(lf);
         }
