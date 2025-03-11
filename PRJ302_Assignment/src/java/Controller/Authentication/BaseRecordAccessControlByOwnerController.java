@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public abstract class BaseRecordAccessControlByOwnerController<T extends BaseModel> extends BaseRequiredAuthenticationController {
     private boolean isAllowedAccess(T entity, User user){
-        return (entity.getCreatedBy().getUsername().equals(user.getUsername()));
+        return (entity.getCreatedBy().equals(user.getUsername()));
     }
     
     protected abstract T getModel(int id);

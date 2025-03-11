@@ -10,25 +10,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Employee Dashboard</title>
+        <link rel="stylesheet" href="styles2.css">
     </head>
     <body>
-        <h1>Hello ${sessionScope.user.displayname}</h1>
-        
-        <c:if test="${sessionScope.user.employee.manager ne null}">
-            Report to ${sessionScope.user.employee.manager.name} <br/>
-        </c:if>
-        Report to you: <br/>
-        <c:forEach items="${sessionScope.user.employee.staffs}" var="s">
-            ${s.name} <br/>
-        </c:forEach>
-        
-        <div>
-            <a href="user/list">View List</a>
-            <a href="user/create">Create</a>
-            <a href="user/update">Update</a>
-            <a href="user/approve">Approve</a>
-            <a href="user/view">Agenda Table</a>
+        <div class="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h2>Menu</h2>
+                <ul class="nav-links">
+                    <li><a href="user/list"><span>View List</span></a></li>
+                    <li><a href="user/create"><span>Create</span></a></li>
+                    <li><a href="user/update"><span>Update</span></a></li>
+                    <li><a href="user/approve"><span>Approve</span></a></li>
+                    <li><a href="user/view"><span>Agenda Table</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h1 class="greeting">Hello ${sessionScope.user.displayname}</h1>
+                
+                <div class="report-section">
+                    <c:if test="${sessionScope.user.employee.manager ne null}">
+                        <p class="manager-info">Report to: ${sessionScope.user.employee.manager.name}</p>
+                    </c:if>
+                    
+                    <p class="staff-title">Report to you:</p>
+                    <ul class="staff-list">
+                        <c:forEach items="${sessionScope.user.employee.staffs}" var="s">
+                            <li>${s.name}</li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
         </div>
     </body>
 </html>
