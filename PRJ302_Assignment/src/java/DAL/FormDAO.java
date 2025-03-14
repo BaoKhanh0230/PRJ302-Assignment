@@ -43,32 +43,6 @@ public class FormDAO extends DBContext<LeaveForm> {
         return al;
     }
 
-    /*public void insert(String username, String role, String department, String fromDay, String toDay, String reason, String status, String processedBy) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            java.util.Date parsedFromDate = sdf.parse(fromDay);
-            java.util.Date parsedToDate = sdf.parse(toDay);
-            java.sql.Date fromDate = new java.sql.Date(parsedFromDate.getTime());
-            java.sql.Date toDate = new java.sql.Date(parsedToDate.getTime());
-
-            String sql = "INSERT INTO [Form2] (username, role, department, fromDay, toDay, reason, status, processedBy) VALUES (?,?,?,?,?,?,?,?)";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, username);
-            stm.setString(2, role);
-            stm.setString(3, department);
-            stm.setDate(4, fromDate);
-            stm.setDate(5, toDate);
-            stm.setString(6, reason);
-            stm.setString(7, status);
-            stm.setString(8, processedBy);
-            stm.executeUpdate();
-            stm.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
     public ArrayList<LeaveForm> select(ArrayList<Employee> emps, User user) {
         ArrayList<LeaveForm> al = new ArrayList<>();
 
@@ -119,9 +93,6 @@ public class FormDAO extends DBContext<LeaveForm> {
                     lf.setProcessedBy(rs.getString("processedBy"));
                     lf.setCreatedDate(rs.getTimestamp("createdDate"));
                     al.add(lf);
-                    //rs.close();
-                    //stm.close();
-                    //con.close();
                 }
             }
         } catch (SQLException ex) {
@@ -158,9 +129,6 @@ public class FormDAO extends DBContext<LeaveForm> {
                     lf.setProcessedBy(rs.getString("processedBy"));
                     lf.setCreatedDate(rs.getTimestamp("createdDate"));
                     al.add(lf);
-                    //rs.close();
-                    //stm.close();
-                    //con.close();
                 }
             }
         } catch (SQLException ex) {

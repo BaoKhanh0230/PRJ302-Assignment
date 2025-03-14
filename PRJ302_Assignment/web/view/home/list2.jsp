@@ -146,8 +146,8 @@
                                 <td><fmt:formatDate value="${form.to}" pattern="yyyy-MM-dd"/></td>
                                 <td>${form.reason}</td>
                                 <td class="button-group">
-                                    <a href="approve2?from=${form.from}&to=${form.to}&reason=${form.reason}&createdBy=${form.createdBy}" class="approve-btn">Approve</a>
-                                    <a href="reject2?from=${form.from}&to=${form.to}&reason=${form.reason}&createdBy=${form.createdBy}" class="reject-btn">Reject</a>
+                                    <a href="approve2?from=${form.from}&to=${form.to}&reason=${form.reason}&createdBy=${form.createdBy}&status=1" class="approve-btn">Approve</a>
+                                    <a href="approve2?from=${form.from}&to=${form.to}&reason=${form.reason}&createdBy=${form.createdBy}&status=0" class="reject-btn">Reject</a>
                                 </td>
                             </tr>
                         </c:forEach>

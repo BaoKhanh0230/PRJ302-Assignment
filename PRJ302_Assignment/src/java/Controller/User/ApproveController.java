@@ -30,7 +30,14 @@ public class ApproveController extends BaseRequiredAuthenticationController {
         Date to = Date.valueOf(req.getParameter("to"));
         String reason = req.getParameter("reason");
         String createdBy = req.getParameter("createdBy");
-        String status = "Approved";
+        String status;
+        if(req.getParameter("status").equalsIgnoreCase("1")){
+            status = "Approved";
+        }
+        else{
+            status = "Rejected";
+        }
+        
         String processedBy = user.getEmployee().getName();
         
         FormDAO fd = new FormDAO();

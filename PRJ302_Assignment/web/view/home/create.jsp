@@ -89,6 +89,23 @@
             .submit-btn:hover {
                 background-color: #0d47a1; /* Darker blue */
             }
+            .back-btn {
+                margin-top: 10px;
+                display: inline-block;
+                background-color: #1565c0;
+                color: #ffffff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            }
+            .back-btn:hover {
+                background-color: #0d47a1;
+            }
         </style>
     </head>
     <body>
@@ -114,6 +131,9 @@
                 </div>
                 <input type="submit" value="Create" class="submit-btn" />
             </form>
+            <a href="../home">
+                <input type="button" value="Back to Home" class="back-btn" />
+            </a>
         </div>
     </body>
 </html>

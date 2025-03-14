@@ -23,10 +23,6 @@ import java.util.ArrayList;
 public class ListFormController extends BaseRequiredAuthenticationController {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        /*req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=UTF-8");*/
-        
         ArrayList<Employee> emps = user.getEmployee().getStaffs();
         
         FormDAO fd = new FormDAO();
