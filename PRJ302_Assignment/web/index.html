@@ -5,18 +5,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Login Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="styles.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <form action="login" method="POST">
-            <div id="container" class="box">
-                Username: <input type="text" name="username"/> <br/>
-                Password: <input type="password" name="password"/> <br/>
+            <div class="login-container">
+                <div class="title-box">
+                    <h2 class="login-title">Login Portal</h2>
+                </div>
+                <div id="container" class="box">
+                    <div class="input-group">
+                        Username: <input type="text" name="username"/> <br/>
+                    </div>
+                    <div class="input-group">
+                        Password: <input type="password" name="password"/> <br/>
+                    </div>
+                    <div class="button-container">
+                        <input type="submit" value="Login"/>
+                    </div>
+                </div>
             </div>
-            <input type="submit" value="Login"/>
         </form>
     </body>
 </html>

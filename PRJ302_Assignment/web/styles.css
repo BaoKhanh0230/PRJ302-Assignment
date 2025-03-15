@@ -6,10 +6,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : Mar 11, 2025, 3:47:58 PM
     Author     : Admin
 */
-
 /* styles.css */
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: url('background/LoginBackground.gif') no-repeat center center fixed;
+    background-size: cover;
     height: 100vh;
     margin: 0;
     display: flex;
@@ -18,35 +18,69 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-.box {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem 3rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    width: 300px;
+.login-container {
+    text-align: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.title-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2.5rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin-bottom: 0; /* Remove gap between title and form */
+}
+
+.login-title {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 2.5rem;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: left;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 input[type="text"],
 input[type="password"] {
-    width: 100%;
+    width: 90%; /* Increased from 80% to 90% for better balance */
     padding: 10px;
-    margin: 10px 0;
+    margin-top: 5px;
     border: 2px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s ease;
+    display: block;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
     border-color: #667eea;
     outline: none;
+}
+
+.button-container {
+    text-align: center; /* Center the button */
+    margin-top: 10px;
 }
 
 input[type="submit"] {
@@ -57,7 +91,7 @@ input[type="submit"] {
     border-radius: 25px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 10px;
     transition: transform 0.2s, background 0.3s;
 }
 
@@ -72,6 +106,5 @@ input[type="submit"]:active {
 
 /* Add some spacing between labels and inputs */
 .box br {
-    display: block;
-    margin: 5px 0;
+    display: none;
 }
