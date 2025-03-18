@@ -10,7 +10,7 @@ public class LeaveForm extends BaseModel {
     private String reason;
     private String status;
     private String processedBy;
-
+    
     public Date getFrom() {
         return from;
     }

@@ -156,6 +156,38 @@ public class FormDAO extends DBContext<LeaveForm> {
         }
     }
 
+    public ArrayList<LeaveForm> selectUpdateableForms(ArrayList<Employee> emps, User user) {
+        ArrayList<LeaveForm> al = new ArrayList<>();
+
+        try {
+            String sql = "SELECT [id], [from]\n"
+                    + "      ,[to]\n"
+                    + "      ,[reason]\n"
+                    + "      ,[status]\n"
+                    + "      ,[createdBy]\n"
+                    + "      ,[createdDate]\n"
+                    + "  FROM [LeaveForm] WHERE createdBy = ? AND [status] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, user.getEmployee().getName());
+            stm.setString(2, "In progress");
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                LeaveForm lf = new LeaveForm();
+                lf.setId(rs.getInt("id"));
+                lf.setFrom(rs.getDate("from"));
+                lf.setTo(rs.getDate("to"));
+                lf.setReason(rs.getString("reason"));
+                lf.setStatus(rs.getString("status"));
+                lf.setCreatedBy(rs.getString("createdBy"));
+                lf.setCreatedDate(rs.getTimestamp("createdDate"));
+                al.add(lf);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, "Database error", ex);
+        }
+        return al;
+    }
+
     @Override
     public ArrayList<LeaveForm> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -209,6 +241,49 @@ public class FormDAO extends DBContext<LeaveForm> {
             } catch (SQLException ex) {
                 Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    public LeaveForm getFormById(int id) {
+        String sql = "SELECT [id], [from]\n"
+                    + "      ,[to]\n"
+                    + "      ,[reason]\n"
+                    + "  FROM [LeaveForm] WHERE [id] = ?";
+        LeaveForm lf = new LeaveForm();
+
+        try (
+                PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                lf.setId(rs.getInt("id"));
+                lf.setFrom(rs.getDate("from"));
+                lf.setTo(rs.getDate("to"));
+                lf.setReason(rs.getString("reason"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lf;
+    }
+
+    public void updateForm(int id, Date from, Date to, String reason) {
+        String sql = "UPDATE [LeaveForm]\n"
+                    + "   SET [from] = ?, [to] = ?, [reason] = ?\n"
+                    + " WHERE [id] = ?";
+
+        try (
+                PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            
+            pstmt.setDate(1, from);
+            pstmt.setDate(2, to);
+            pstmt.setString(3, reason);
+            pstmt.setInt(4, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

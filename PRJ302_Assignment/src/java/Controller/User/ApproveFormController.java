@@ -35,6 +35,6 @@ public class ApproveFormController extends BaseRequiredAuthenticationController 
         ArrayList<LeaveForm> al = fd.selectApprove(emps, user);
         req.setAttribute("listForm", al);
 
-        req.getRequestDispatcher("/view/home/list2.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/home/approveList.jsp").forward(req, resp);
     }
 }

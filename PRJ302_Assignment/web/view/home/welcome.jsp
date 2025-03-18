@@ -186,14 +186,14 @@
 
             <!-- Main Content -->
             <div class="main-content">
-                <h1 class="greeting">Hello ${sessionScope.user.displayname}</h1>
+                <h1 class="greeting">Hello ${sessionScope.user.displayname}!</h1>
 
                 <div class="report-section">
                     <c:if test="${sessionScope.user.employee.manager ne null}">
-                        <p class="manager-info">Report to: ${sessionScope.user.employee.manager.name}</p>
+                        <p class="manager-info">Your superior: ${sessionScope.user.employee.manager.name}</p>
                     </c:if>
 
-                    <p class="staff-title">Report to you:</p>
+                    <p class="staff-title">Your subordinates:</p>
                     <ul class="staff-list">
                         <c:forEach items="${sessionScope.user.employee.staffs}" var="s">
                             <li>${s.name}</li>
