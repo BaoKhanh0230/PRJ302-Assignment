@@ -7,119 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tlds/mytag"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Leave Request Approvals</title>
-        <style>
-            /* Formal CSS Styling for Approval List Form */
-            body {
-                font-family: 'Helvetica', sans-serif;
-                background-color: #f5f6f5; /* Off-white background */
-                color: #333;
-            }
-            .container {
-                width: 90%;
-                max-width: 1200px;
-                margin: 40px auto;
-                padding: 20px;
-                background-color: #fff;
-                border: 1px solid #dcdcdc;
-                border-radius: 6px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            }
-            .page-title {
-                font-size: 24px;
-                font-weight: 600;
-                color: #2b2b2b;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-            .sub-title {
-                font-size: 18px;
-                font-weight: 500;
-                color: #444;
-                margin-bottom: 15px;
-                text-align: center;
-            }
-            .form-table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 20px;
-            }
-            .form-table th {
-                background-color: #1565c0; /* Deep blue header */
-                color: #fff;
-                padding: 12px;
-                text-align: left;
-                font-weight: 500;
-                border: 1px solid #0d47a1;
-            }
-            .form-table td {
-                padding: 10px;
-                border: 1px solid #dcdcdc;
-                font-size: 14px;
-                vertical-align: middle;
-            }
-            .form-table tr:nth-child(even) {
-                background-color: #f9f9f9; /* Light gray for alternating rows */
-            }
-            .form-table tr:hover {
-                background-color: #eceff1; /* Subtle hover effect */
-            }
-            .no-data {
-                font-size: 16px;
-                color: #666;
-                text-align: center;
-                margin: 20px 0;
-            }
-            .button-group {
-                display: flex;
-                flex-direction: column;
-                gap: 8px; /* Space between buttons */
-            }
-            .approve-btn, .reject-btn {
-                display: inline-block;
-                padding: 6px 12px;
-                border-radius: 4px;
-                text-decoration: none;
-                font-size: 13px;
-                font-weight: 500;
-                text-align: center;
-                transition: background-color 0.3s ease;
-            }
-            .approve-btn {
-                background-color: #2e7d32; /* Green for approve */
-                color: #fff;
-            }
-            .approve-btn:hover {
-                background-color: #1b5e20; /* Darker green */
-            }
-            .reject-btn {
-                background-color: #c62828; /* Red for reject */
-                color: #fff;
-            }
-            .reject-btn:hover {
-                background-color: #b71c1c; /* Darker red */
-            }
-            .back-btn {
-                display: inline-block;
-                background-color: #1565c0; /* Deep blue */
-                color: #ffffff;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: 500;
-                text-decoration: none;
-                transition: background-color 0.3s ease;
-            }
-            .back-btn:hover {
-                background-color: #0d47a1; /* Darker blue */
-            }
-        </style>
+        <mytag:urlResolver target="/css/approveList.css"/>
     </head>
     <body>
         <div class="container">
