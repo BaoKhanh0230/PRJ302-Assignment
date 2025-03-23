@@ -15,16 +15,14 @@ import java.io.IOException;
 public class UpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Set character encoding
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
 
-        // Lấy ID của form từ tham số
         String formId = req.getParameter("id");
         if (formId != null) {
             FormDAO fd = new FormDAO();
-            LeaveForm form = fd.getFormById(Integer.parseInt(formId)); // Giả sử có phương thức này
+            LeaveForm form = fd.getFormById(Integer.parseInt(formId));
             req.setAttribute("form", form);
             req.getRequestDispatcher("/view/home/editForm.jsp").forward(req, resp);
         } else {
@@ -34,17 +32,14 @@ public class UpdateController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Lấy thông tin từ form chỉnh sửa
         String formId = req.getParameter("id");
         String fromDateStr = req.getParameter("fromDate");
         String toDateStr = req.getParameter("toDate");
         String reason = req.getParameter("reason");
 
-        // Chuyển đổi ngày (giả sử định dạng YYYY-MM-DD)
         java.sql.Date fromDate = java.sql.Date.valueOf(fromDateStr);
         java.sql.Date toDate = java.sql.Date.valueOf(toDateStr);
 
-        // Cập nhật thông tin vào database
         FormDAO fd = new FormDAO();
         fd.updateForm(Integer.parseInt(formId), fromDate, toDate, reason);
 

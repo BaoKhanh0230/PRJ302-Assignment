@@ -33,9 +33,6 @@ public class ViewAgendaController extends BaseRequiredAuthenticationController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException {
-        /*LocalDate startDate = LocalDate.of(2025, 3, 1); // Adjust as needed
-        LocalDate endDate = LocalDate.of(2025, 3, 9);   // Adjust as needed*/
-        
         String startStr = req.getParameter("start");
         String endStr = req.getParameter("end");
 
@@ -51,7 +48,6 @@ public class ViewAgendaController extends BaseRequiredAuthenticationController {
                 ? LocalDate.parse(endStr) 
                 : LocalDate.of(2025, 9, 1);
 
-            // Ensure end date is not before start date
             if (endDate.isBefore(startDate)) {
                 throw new IllegalArgumentException("End date cannot be before start date.");
             }
@@ -87,12 +83,6 @@ public class ViewAgendaController extends BaseRequiredAuthenticationController {
         Map<String, boolean[]> agenda = new HashMap<>();
         long totalDays = java.time.temporal.ChronoUnit.DAYS.between(startDate, endDate) + 1;
 
-        // Initialize agenda for each employee with all false (working)
-        /*for (LeaveForm request : leaveRequests) {
-            String employeeName = request.getCreatedBy();
-            agenda.putIfAbsent(employeeName, new boolean[(int) totalDays]);
-        }*/
-
         ArrayList<Employee> emps = user.getEmployee().getStaffs();
         for(Employee emp : emps){
             String employeeName = emp.getName();
@@ -114,11 +104,7 @@ public class ViewAgendaController extends BaseRequiredAuthenticationController {
             boolean[] schedule = agenda.get(employeeName);
             startIndex = Math.max(0, startIndex);
             endIndex = Math.min(endIndex, (int) totalDays - 1);
-            /*for (int i = startIndex; i <= endIndex && i < totalDays; i++) {
-                if (schedule != null) {
-                    schedule[i] = true; // Mark as on leave
-                }
-            }*/
+
             if (schedule != null) {
                 for (int i = startIndex; i <= endIndex && i < totalDays; i++) {
                     schedule[i] = true; // Mark as on leave
